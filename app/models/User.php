@@ -23,4 +23,17 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $hidden = array('password', 'remember_token');
 
+    /**
+     * Model doesn't require info about create\update time,
+     * so the related table doesn't have 'created_at' and 'updated_at' fields.
+     *
+     * @var string
+     */
+    protected $timestamps = false;
+
+    public function posts()
+    {
+        return $this->hasMany('Post');
+    }
+
 }
