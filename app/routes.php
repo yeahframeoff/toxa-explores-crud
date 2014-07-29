@@ -11,6 +11,9 @@
 |
 */
 
+App::bind('IUserStorage', 'UserStorage');
+App::bind('IPostStorage', 'PostStorage');
+
 Route::get('/', function()
 {
 	return View::make('hello');
