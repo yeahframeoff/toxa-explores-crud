@@ -31,7 +31,8 @@ class UserController extends \BaseController
 	 */
 	public function create()
 	{
-		//
+		//$user = $this->userStorage->create();
+        return View::make('user.form');
 	}
 
 
@@ -42,7 +43,13 @@ class UserController extends \BaseController
 	 */
 	public function store()
 	{
-		//
+        $data = Input::except('_token');
+		$result = $this->userStorage->save($data);
+
+        if ($result instanceof \Illuminate\Support\Facades\Validator)
+            return 'Something gone bad. Write carefully';
+        else
+            return \Illuminate\Support\Facades\Redirect::route('users.create');
 	}
 
 

@@ -26,9 +26,9 @@ interface IStorage
     /**
      * Saves object to storage
      *
-     * @param $obj Object
+     * @param $data Object
      * @return mixed
      */
-    public function save($obj);
+    public function save($data);
 
 }

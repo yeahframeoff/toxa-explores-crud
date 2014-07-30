@@ -14,30 +14,34 @@ class UserStorage implements IUserStorage
      *
      * @return Object[]
      */
-    public function all()
+    public function fetchAll()
     {
         return User::all();
     }
 
     /**
-     * Creates object in storage
-     *
-     * @param $data array
-     * @return mixed
+     * @return User
      */
     public function create()
     {
-        return User::create();
+        return new User;
+    }
+
+    public function validate($data)
+    {
+        return true;
     }
 
     /**
-     * Saves object to storage
-     *
-     * @param $obj Object
+     * @param Object $data
      * @return mixed
      */
-    public function save($obj)
+    public function save($data)
     {
-        return $obj->save();
+        $result = $this->validate($data);
+        if ($result instanceof \Illuminate\Validation\Validator)
+            return $result;
+        else
+            return User::create($data);
     }
 }
